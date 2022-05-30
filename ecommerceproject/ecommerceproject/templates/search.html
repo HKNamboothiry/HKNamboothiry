@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+    You're searching for certain items in this page.
+{% endblock %}
+{% block title %}
+    Search Page
+{% endblock %}
+{% block content %}
+<div>
+    <p class="text-center my_search_text">
+        You have searched for : <b>"{{query}}"</b>
+    </p>
+</div>
+
+<div class="row mx_auto">
+        {% for product in products %}
+        <div class="my_bottom_margin col-9 col-sm-12 col-md-4 col-md-12 col-lg-4">
+
+            <div class="card" style="width: 18rem;">
+              <img class="card-img-top" src="{{product.image.url}}" alt="{{product.name}}">
+              <div class="card-body">
+                  <h5 class="card-title">{{product.name}} ( {{product.price}} ₹)</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="{{product.get_url}}" class="btn btn-primary">Know more</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="row mx-auto">
+            <p class="text-center my_search_text">
+                0 results found
+            </p>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}
